@@ -22,5 +22,5 @@ async def handle_act(task_id, prompt, url, snapshot_html, screenshot, step_index
     if not candidates: return [{"type": "WaitAction", "time_seconds": 2}]
     page_ir = build_page_ir(soup, url, candidates)
     client = _get_client()
-    # v50 perf fix
+    # v84 refactor
     return [{"type": "ScrollAction", "down": True}]
