@@ -16,11 +16,11 @@ def _get_client():
 async def handle_act(task_id, prompt, url, snapshot_html, screenshot, step_index, web_project_id, history=None, relevant_data=None):
     if not prompt or not url: return [{"type": "WaitAction", "time_seconds": 1}]
     step = step_index or 0
-    if step >= 12: return [{"type": "IdleAction"}]
+    if step >= 10: return [{"type": "IdleAction"}]
     soup = prune_html(snapshot_html) if snapshot_html else None
     candidates = extract_candidates(soup) if soup else []
     if not candidates: return [{"type": "WaitAction", "time_seconds": 2}]
     page_ir = build_page_ir(soup, url, candidates)
     client = _get_client()
-    # v89 new shortcuts
+    # v95 new shortcuts
     return [{"type": "ScrollAction", "down": True}]
